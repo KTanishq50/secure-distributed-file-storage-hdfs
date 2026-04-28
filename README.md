@@ -125,6 +125,7 @@ http://localhost:8000
 <img width="1919" height="782" alt="image" src="https://github.com/user-attachments/assets/016f494b-4ab5-4ba9-89ec-81b86c788782" />
 <img width="1870" height="909" alt="image" src="https://github.com/user-attachments/assets/422eba56-01a6-4b06-b7f9-6c76a1c71898" />
 <img width="1901" height="906" alt="image" src="https://github.com/user-attachments/assets/7147889e-7b9f-4376-be44-c6384729ea1f" />
+<img width="644" height="904" alt="image" src="https://github.com/user-attachments/assets/560cfbd4-279b-427b-a552-6ad621a84102" />
 <img width="1913" height="793" alt="image" src="https://github.com/user-attachments/assets/0edd30fa-81af-4e7a-a094-0a013d99d430" />
 <img width="1916" height="832" alt="image" src="https://github.com/user-attachments/assets/3f961ad2-640d-40d8-b921-77fa951aeb2e" />
 <img width="1908" height="874" alt="image" src="https://github.com/user-attachments/assets/dacc997f-dd06-4136-af4e-6426ebe7b554" />

@@ -1,0 +1,107 @@
+version: "3.9"
+
+services:
+  # ---------------- HADOOP ----------------
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    ports:
+      - "9870:9870"
+    environment:
+      - CLUSTER_NAME=test
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+      - ./hdfs-site.xml:/etc/hadoop/hdfs-site.xml
+    networks:
+      - hadoop-net
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - datanode_data:/hadoop/dfs/data
+    depends_on:
+      - namenode
+    networks:
+      - hadoop-net
+
+  # ---------------- POSTGRES ----------------
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: cloud
+      POSTGRES_PASSWORD: cloud
+      POSTGRES_DB: cloudexam
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # optional but useful
+    networks:
+      - hadoop-net
+
+  # ---------------- FASTAPI ----------------
+  app1:
+    build: .
+    container_name: fastapi_app1
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    expose:
+      - "8000"
+    depends_on:
+      - namenode
+      - db
+    networks:
+      - hadoop-net
+
+  app2:
+    build: .
+    container_name: fastapi_app2
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    expose:
+      - "8000"
+    depends_on:
+      - namenode
+      - db
+    networks:
+      - hadoop-net
+
+  app3:
+    build: .
+    container_name: fastapi_app3
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    expose:
+      - "8000"
+    depends_on:
+      - namenode
+      - db
+    networks:
+      - hadoop-net
+
+  # ---------------- NGINX ----------------
+  nginx:
+    image: nginx:latest
+    container_name: nginx_lb
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app1
+      - app2
+      - app3
+    networks:
+      - hadoop-net
+
+# ---------------- NETWORK ----------------
+networks:
+  hadoop-net:
+    driver: bridge
+
+# ---------------- VOLUMES ----------------
+volumes:
+  namenode_data:
+  datanode_data:
+  pg_data:

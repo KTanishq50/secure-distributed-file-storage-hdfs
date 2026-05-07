@@ -130,6 +130,8 @@ http://localhost:8000
 <img width="1916" height="832" alt="image" src="https://github.com/user-attachments/assets/3f961ad2-640d-40d8-b921-77fa951aeb2e" />
 <img width="1908" height="874" alt="image" src="https://github.com/user-attachments/assets/dacc997f-dd06-4136-af4e-6426ebe7b554" />
 <img width="1908" height="875" alt="image" src="https://github.com/user-attachments/assets/027cc7ed-1976-43b1-94bc-abdc16741262" />
+<img width="1121" height="688" alt="image" src="https://github.com/user-attachments/assets/c0bd75e1-c2d9-44f0-acf1-73ca7590e8a4" />
+
 
 ---
 
